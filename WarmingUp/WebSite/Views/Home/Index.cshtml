@@ -1,0 +1,42 @@
+﻿@{    
+}
+
+@section Scripts {
+    <script>
+        (function() {
+            $(function () {
+                $("#area-html, #area-css, #area-js").keyup(
+                    _.debounce(updateContentIFrame, 1000)                 
+                );
+            });
+
+            function updateContentIFrame() {
+                var html = $("#area-html").val();
+                var css = $("#area-css").val();
+                var js = $("#area-js").val();
+
+                var result = 
+`<head>
+<meta name="viewport" content="width=device-width" />
+<title>IFrame content</title>
+<style>${css}</style>
+</head>
+<body>
+${html}
+<script>${js}</scr` + `ipt>
+</body>`;
+                $("#frame-result").contents().find("html")[0].innerHTML = result;                
+                frames[0].window.eval(js);
+            }
+
+        }());
+</script>
+}
+
+<div>
+    <textarea id="area-html" rows="10" cols="50"></textarea>
+    <textarea id="area-css" rows="10" cols="50"></textarea>
+    <textarea id="area-js" rows="10" cols="50"></textarea>
+
+    <iframe id="frame-result" src="/home/blank"></iframe>
+</div>
