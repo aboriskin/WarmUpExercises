@@ -3,17 +3,28 @@
 
 @section Scripts {
     <script>
-        (function() {
+        (function () {
+            var htmlEditor, cssEditor, jsEditor;
+
             $(function () {
-                $("#area-html, #area-css, #area-js").keyup(
-                    _.debounce(updateContentIFrame, 1000)                 
-                );
+                htmlEditor = initEditor("html");
+                cssEditor = initEditor("css");
+                jsEditor = initEditor("javascript");
             });
 
+            function initEditor(language) {
+                var editor = ace.edit(`area-${language}`);
+                editor.setTheme("ace/theme/twilight");
+                editor.session.setMode(`ace/mode/${language}`);
+
+                editor.getSession().on('change', _.debounce(updateContentIFrame, 1000));
+                return editor;
+            }
+
             function updateContentIFrame() {
-                var html = $("#area-html").val();
-                var css = $("#area-css").val();
-                var js = $("#area-js").val();
+                var html = htmlEditor.getValue();
+                var css = cssEditor.getValue();
+                var js = jsEditor.getValue();
 
                 var result = 
 `<head>
@@ -33,10 +44,10 @@ ${html}
 </script>
 }
 
-<div>
-    <textarea id="area-html" rows="10" cols="50"></textarea>
-    <textarea id="area-css" rows="10" cols="50"></textarea>
-    <textarea id="area-js" rows="10" cols="50"></textarea>
+<div>    
+    <pre id="area-html"></pre>
+    <pre id="area-css"></pre>
+    <pre id="area-javascript"></pre>
 
     <iframe id="frame-result" src="/home/blank"></iframe>
 </div>
