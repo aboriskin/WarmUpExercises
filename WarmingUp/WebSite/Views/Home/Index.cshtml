@@ -2,52 +2,25 @@
 }
 
 @section Scripts {
-    <script>
-        (function () {
-            var htmlEditor, cssEditor, jsEditor;
-
-            $(function () {
-                htmlEditor = initEditor("html");
-                cssEditor = initEditor("css");
-                jsEditor = initEditor("javascript");
-            });
-
-            function initEditor(language) {
-                var editor = ace.edit(`area-${language}`);
-                editor.setTheme("ace/theme/twilight");
-                editor.session.setMode(`ace/mode/${language}`);
-
-                editor.getSession().on('change', _.debounce(updateContentIFrame, 1000));
-                return editor;
-            }
-
-            function updateContentIFrame() {
-                var html = htmlEditor.getValue();
-                var css = cssEditor.getValue();
-                var js = jsEditor.getValue();
-
-                var result = 
-`<head>
-<meta name="viewport" content="width=device-width" />
-<title>IFrame content</title>
-<style>${css}</style>
-</head>
-<body>
-${html}
-<script>${js}</scr` + `ipt>
-</body>`;
-                $("#frame-result").contents().find("html")[0].innerHTML = result;                
-                frames[0].window.eval(js);
-            }
-
-        }());
-</script>
+    <script src="~/js/test-page.js"></script>
 }
 
 <div>    
-    <pre id="area-html"></pre>
-    <pre id="area-css"></pre>
-    <pre id="area-javascript"></pre>
-
-    <iframe id="frame-result" src="/home/blank"></iframe>
-</div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#area-html-tab">HTML</a></li>
+            <li><a href="#area-css-tab">CSS</a></li>
+            <li><a href="#area-javascript-tab">JS</a></li>
+        </ul>
+        <div id="area-html-tab">
+            <pre id="area-html"></pre>
+        </div>
+        <div id="area-css-tab">
+            <pre id="area-css"></pre>
+        </div>
+        <div id="area-javascript-tab">
+            <pre id="area-javascript"></pre>
+        </div>
+    </div>
+        <iframe id="frame-result" src="/home/blank"></iframe>
+    </div>
