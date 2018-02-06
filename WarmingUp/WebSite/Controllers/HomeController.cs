@@ -10,9 +10,9 @@ namespace WebSite.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int id = 1)
         {
-            return View();
+            return View(id);
         }
 
         public IActionResult Blank()

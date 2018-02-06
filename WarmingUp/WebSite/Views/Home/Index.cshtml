@@ -1,26 +1,10 @@
 ﻿@{    
 }
 
+@model int
+
 @section Scripts {
     <script src="~/js/test-page.js"></script>
 }
 
-<div>    
-    <div id="tabs">
-        <ul>
-            <li><a href="#area-html-tab">HTML</a></li>
-            <li><a href="#area-css-tab">CSS</a></li>
-            <li><a href="#area-javascript-tab">JS</a></li>
-        </ul>
-        <div id="area-html-tab">
-            <pre id="area-html"></pre>
-        </div>
-        <div id="area-css-tab">
-            <pre id="area-css"></pre>
-        </div>
-        <div id="area-javascript-tab">
-            <pre id="area-javascript"></pre>
-        </div>
-    </div>
-        <iframe id="frame-result" src="/home/blank"></iframe>
-    </div>
+@await Component.InvokeAsync("IFrameEditor", new { exerciseId = @Model })

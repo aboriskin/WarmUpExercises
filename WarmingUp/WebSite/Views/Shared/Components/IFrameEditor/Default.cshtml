@@ -1,0 +1,21 @@
+﻿@model Exercise
+
+<div>
+    <div id="tabs">
+        <ul>
+            <li><a href="#area-html-tab">HTML</a></li>
+            <li><a href="#area-css-tab">CSS</a></li>
+            <li><a href="#area-javascript-tab">JS</a></li>
+        </ul>
+        <div id="area-html-tab">
+            <pre id="area-html">@Model.Html</pre>
+        </div>
+        <div id="area-css-tab">
+            <pre id="area-css">@Model.Css</pre>
+        </div>
+        <div id="area-javascript-tab">
+            <pre id="area-javascript">@Model.Javascript</pre>
+        </div>
+    </div>
+    <iframe id="frame-result" src="/home/blank"></iframe>
+</div>
