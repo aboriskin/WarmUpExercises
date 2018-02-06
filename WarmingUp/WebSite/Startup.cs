@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebSite.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebSite
 {
@@ -22,6 +24,14 @@ namespace WebSite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<WarmingUpDbContext>((serviceProvider, options) =>
+                {
+                    options.UseSqlServer(connectionString)
+                    .UseInternalServiceProvider(serviceProvider);
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
