@@ -1,0 +1,101 @@
+﻿@model WebSite.Models.Exercise
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h4>Exercise</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartHtml" class="control-label"></label>
+                <input asp-for="StartHtml" class="form-control" />
+                <span asp-validation-for="StartHtml" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerHtml" class="control-label"></label>
+                <input asp-for="AnswerHtml" class="form-control" />
+                <span asp-validation-for="AnswerHtml" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IncludeHtmlTab" /> @Html.DisplayNameFor(model => model.IncludeHtmlTab)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartCss" class="control-label"></label>
+                <input asp-for="StartCss" class="form-control" />
+                <span asp-validation-for="StartCss" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerCss" class="control-label"></label>
+                <input asp-for="AnswerCss" class="form-control" />
+                <span asp-validation-for="AnswerCss" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IncludeCssTab" /> @Html.DisplayNameFor(model => model.IncludeCssTab)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartJavascript" class="control-label"></label>
+                <input asp-for="StartJavascript" class="form-control" />
+                <span asp-validation-for="StartJavascript" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerJavascript" class="control-label"></label>
+                <input asp-for="AnswerJavascript" class="form-control" />
+                <span asp-validation-for="AnswerJavascript" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IncludeJavascriptTab" /> @Html.DisplayNameFor(model => model.IncludeJavascriptTab)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</body>
+</html>

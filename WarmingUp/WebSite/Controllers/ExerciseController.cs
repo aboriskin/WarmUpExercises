@@ -10,22 +10,22 @@ using WebSite.Models;
 
 namespace WebSite.Controllers
 {
-    public class AdminController : Controller
+    public class ExerciseController : Controller
     {
         private readonly WarmingUpDbContext _context;
 
-        public AdminController(WarmingUpDbContext context)
+        public ExerciseController(WarmingUpDbContext context)
         {
             _context = context;
         }
 
-        // GET: Admin
+        // GET: Exercise
         public async Task<IActionResult> Index()
         {
             return View(await _context.Exercises.ToListAsync());
         }
 
-        // GET: Admin/Details/5
+        // GET: Exercise/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,18 +43,18 @@ namespace WebSite.Controllers
             return View(exercise);
         }
 
-        // GET: Admin/Create
+        // GET: Exercise/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Create
+        // POST: Exercise/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description,Notes,Html,Css,Javascript")] Exercise exercise)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Notes,StartHtml,AnswerHtml,IncludeHtmlTab,StartCss,AnswerCss,IncludeCssTab,StartJavascript,AnswerJavascript,IncludeJavascriptTab")] Exercise exercise)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace WebSite.Controllers
             return View(exercise);
         }
 
-        // GET: Admin/Edit/5
+        // GET: Exercise/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +81,12 @@ namespace WebSite.Controllers
             return View(exercise);
         }
 
-        // POST: Admin/Edit/5
+        // POST: Exercise/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description,Notes,Html,Css,Javascript")] Exercise exercise)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Notes,StartHtml,AnswerHtml,IncludeHtmlTab,StartCss,AnswerCss,IncludeCssTab,StartJavascript,AnswerJavascript,IncludeJavascriptTab")] Exercise exercise)
         {
             if (id != exercise.Id)
             {
@@ -116,7 +116,7 @@ namespace WebSite.Controllers
             return View(exercise);
         }
 
-        // GET: Admin/Delete/5
+        // GET: Exercise/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace WebSite.Controllers
             return View(exercise);
         }
 
-        // POST: Admin/Delete/5
+        // POST: Exercise/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

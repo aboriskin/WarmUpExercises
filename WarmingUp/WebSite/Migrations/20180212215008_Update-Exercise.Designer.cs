@@ -11,9 +11,10 @@ using WebSite.DataAccess;
 namespace WebSite.Migrations
 {
     [DbContext(typeof(WarmingUpDbContext))]
-    partial class WarmingUpDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180212215008_Update-Exercise")]
+    partial class UpdateExercise
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,0 +1,109 @@
+﻿@model IEnumerable<WebSite.Models.Exercise>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartHtml)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AnswerHtml)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IncludeHtmlTab)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartCss)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AnswerCss)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IncludeCssTab)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartJavascript)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AnswerJavascript)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IncludeJavascriptTab)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartHtml)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerHtml)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncludeHtmlTab)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartCss)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerCss)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncludeCssTab)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartJavascript)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnswerJavascript)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncludeJavascriptTab)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

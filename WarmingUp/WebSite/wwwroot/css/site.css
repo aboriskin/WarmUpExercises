@@ -34,10 +34,9 @@
     }
 }
 
-pre {
-    display: block;
-    width: 500px;
-    height: 400px;
+#tabs pre {
+    display: block;    
+    height: 600px;
 }
 
 
