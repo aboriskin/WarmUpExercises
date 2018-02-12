@@ -1,21 +1,21 @@
-﻿@model Exercise
+﻿@model IFrameEditorModel
 
 <div>
-    <div id="tabs" class="col-sm-7">
+    <div id="@ViewBag.IdPrefix-tabs" class="tabs col-sm-7">
         <ul>
-            <li><a href="#area-html-tab">HTML</a></li>
-            <li><a href="#area-css-tab">CSS</a></li>
-            <li><a href="#area-javascript-tab">JS</a></li>
+            <li><a href="#area-@ViewBag.IdPrefix-html-tab">HTML</a></li>
+            <li><a href="#area-@ViewBag.IdPrefix-css-tab">CSS</a></li>
+            <li><a href="#area-@ViewBag.IdPrefix-javascript-tab">JS</a></li>
         </ul>
-        <div id="area-html-tab">
-            <pre id="area-html">@Model.Html</pre>
+        <div id="area-@ViewBag.IdPrefix-html-tab">
+            <pre id="area-@ViewBag.IdPrefix-html">@Model.Html</pre>
         </div>
-        <div id="area-css-tab">
-            <pre id="area-css">@Model.Css</pre>
+        <div id="area-@ViewBag.IdPrefix-css-tab">
+            <pre id="area-@ViewBag.IdPrefix-css">@Model.Css</pre>
         </div>
-        <div id="area-javascript-tab">
-            <pre id="area-javascript">@Model.Javascript</pre>
+        <div id="area-@ViewBag.IdPrefix-javascript-tab">
+            <pre id="area-@ViewBag.IdPrefix-javascript">@Model.Javascript</pre>
         </div>
     </div>
-    <iframe id="frame-result" class="col-sm-5" src="/home/blank"></iframe>
+    <iframe id="frame-@ViewBag.IdPrefix-result" class="col-sm-5" src="/home/blank"></iframe>
 </div>

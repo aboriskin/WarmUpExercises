@@ -34,7 +34,7 @@
     }
 }
 
-#tabs pre {
+.tabs pre {
     display: block;    
     height: 600px;
 }

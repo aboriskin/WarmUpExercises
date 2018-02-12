@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DataAccess.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebSite.Models;
 
-namespace WebSite.DataAccess
+namespace DataAccess
 {
     public class WarmingUpDbContext : DbContext
     {
-        public DbSet<Exercise> Exercises { get; set; }
+        public DbSet<ExerciseEntity> Exercises { get; set; }
 
         public WarmingUpDbContext(DbContextOptions<WarmingUpDbContext> options)
             : base(options)

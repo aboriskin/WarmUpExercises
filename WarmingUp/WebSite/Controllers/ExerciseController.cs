@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using WebSite.DataAccess;
 using WebSite.Models;
+using DataAccess;
+using DataAccess.Entities;
+using WebSite.Mappers;
 
 namespace WebSite.Controllers
 {
@@ -46,7 +48,12 @@ namespace WebSite.Controllers
         // GET: Exercise/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new ExerciseModel
+            {
+                AnswerModel = new IFrameEditorModel(),
+                StartModel = new IFrameEditorModel()
+            };
+            return View(model);
         }
 
         // POST: Exercise/Create
@@ -54,11 +61,12 @@ namespace WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Notes,StartHtml,AnswerHtml,IncludeHtmlTab,StartCss,AnswerCss,IncludeCssTab,StartJavascript,AnswerJavascript,IncludeJavascriptTab")] Exercise exercise)
+        public async Task<IActionResult> Create(ExerciseModel exercise)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(exercise);
+                var entity = ExerciseMapper.Instance.MapBack(exercise);
+                _context.Add(entity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -86,7 +94,7 @@ namespace WebSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Notes,StartHtml,AnswerHtml,IncludeHtmlTab,StartCss,AnswerCss,IncludeCssTab,StartJavascript,AnswerJavascript,IncludeJavascriptTab")] Exercise exercise)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Notes,StartHtml,AnswerHtml,IncludeHtmlTab,StartCss,AnswerCss,IncludeCssTab,StartJavascript,AnswerJavascript,IncludeJavascriptTab")] ExerciseEntity exercise)
         {
             if (id != exercise.Id)
             {

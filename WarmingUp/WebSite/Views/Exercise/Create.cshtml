@@ -1,7 +1,10 @@
-﻿@model WebSite.Models.Exercise
+﻿@model WebSite.Models.ExerciseModel
 
-@{
-    Layout = null;
+@{    
+}
+
+@section Scripts {
+    <script src="~/js/iFrameEditor.js"></script>
 }
 
 <!DOCTYPE html>
@@ -16,7 +19,7 @@
 <h4>Exercise</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -34,7 +37,7 @@
                 <input asp-for="Notes" class="form-control" />
                 <span asp-validation-for="Notes" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="StartHtml" class="control-label"></label>
                 <input asp-for="StartHtml" class="form-control" />
                 <span asp-validation-for="StartHtml" class="text-danger"></span>
@@ -43,48 +46,20 @@
                 <label asp-for="AnswerHtml" class="control-label"></label>
                 <input asp-for="AnswerHtml" class="form-control" />
                 <span asp-validation-for="AnswerHtml" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            </div>*@
+
+            @await Component.InvokeAsync("IFrameEditor", new { model = @Model.AnswerModel, idPrefix = "answer" })
+
+            @*<div class="form-group">
                 <div class="checkbox">
                     <label>
                         <input asp-for="IncludeHtmlTab" /> @Html.DisplayNameFor(model => model.IncludeHtmlTab)
                     </label>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartCss" class="control-label"></label>
-                <input asp-for="StartCss" class="form-control" />
-                <span asp-validation-for="StartCss" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnswerCss" class="control-label"></label>
-                <input asp-for="AnswerCss" class="form-control" />
-                <span asp-validation-for="AnswerCss" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IncludeCssTab" /> @Html.DisplayNameFor(model => model.IncludeCssTab)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="StartJavascript" class="control-label"></label>
-                <input asp-for="StartJavascript" class="form-control" />
-                <span asp-validation-for="StartJavascript" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnswerJavascript" class="control-label"></label>
-                <input asp-for="AnswerJavascript" class="form-control" />
-                <span asp-validation-for="AnswerJavascript" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label>
-                        <input asp-for="IncludeJavascriptTab" /> @Html.DisplayNameFor(model => model.IncludeJavascriptTab)
-                    </label>
-                </div>
-            </div>
+            </div>*@
+          
+            @await Component.InvokeAsync("IFrameEditor", new { model = @Model.StartModel, idPrefix = "start" })
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
